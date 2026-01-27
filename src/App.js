@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import TodosPage from "./pages/TodosPage";
+import TodosPage from "./TodosPage";
 import ContactPage from "./pages/ContactPage";
 import "./App.css";
 
