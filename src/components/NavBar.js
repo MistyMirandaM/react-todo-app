@@ -1,14 +1,30 @@
 import { NavLink } from "react-router-dom";
+import "./NavBar.css";
 
 export default function NavBar() {
   return (
-    <header style={{ display: "flex", justifyContent: "space-between", padding: 12 }}>
-      <div>Todo App</div>
+    <header className="nav">
+      <div className="navInner">
+        <div className="navBrand">Eh, I’ll Do It</div>
 
-      <nav style={{ display: "flex", gap: 12 }}>
-        <NavLink to="/todos">Todos</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
-      </nav>
+        <nav className="navLinks">
+          <NavLink
+            to="/todos"
+            className={({ isActive }) => (isActive ? "navLink active" : "navLink")}
+          >
+            Todos
+          </NavLink>
+
+          <NavLink
+            to="/contact"
+            className={({ isActive }) => (isActive ? "navLink active" : "navLink")}
+          >
+            Contact
+          </NavLink>
+        </nav>
+
+        <div /> 
+      </div>
     </header>
   );
 }

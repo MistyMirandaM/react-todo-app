@@ -1,87 +1,100 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
+import "./ContactPage.css";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    comments: "",
-  });
+  const formRef = useRef(null);
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
-  }
+  const [status, setStatus] = useState({
+    state: "idle", 
+    message: "",
+  });
 
   function handleSubmit(e) {
     e.preventDefault();
-    alert("Form submitted (demo). Check your typed values on the page!");
+
+    setStatus({ state: "sending", message: "Sending your report..." });
+
+    emailjs
+      .sendForm(
+        "service_vrgwe7n",
+        "template_ge9kug3",
+        formRef.current,
+        "f-z_vp9Iik4p3F-Uy"
+      )
+      .then(() => {
+        setStatus({
+          state: "success",
+          message: "Thanks! Your message was sent. We’ll get back to you soon.",
+        });
+
+        formRef.current.reset();
+      })
+      .catch(() => {
+        setStatus({
+          state: "error",
+          message: "Something went wrong. Please try again.",
+        });
+      });
   }
 
   return (
     <section>
-      <h1>Contact</h1>
+      <h1 style={{ textAlign: "center" }}>Contact</h1>
 
-      <form onSubmit={handleSubmit} style={{ maxWidth: 500 }}>
-        <label>
-          First Name
-          <input
-            name="firstName"
-            value={form.firstName}
-            onChange={handleChange}
-            type="text"
-          />
-        </label>
+      <p className="contactIntro">
+        Having issues with the app? Send us a message and we’ll get back to you
+        as soon as possible.
+      </p>
 
-        <br />
+      <div className="contactWrap">
+        <div className="contactCard">
+          {status.state !== "idle" && (
+            <div className={`banner ${status.state}`}>{status.message}</div>
+          )}
 
-        <label>
-          Last Name
-          <input
-            name="lastName"
-            value={form.lastName}
-            onChange={handleChange}
-            type="text"
-          />
-        </label>
+          {status.state !== "success" && (
+            <form ref={formRef} onSubmit={handleSubmit} className="contactForm">
+              <div className="grid2">
+                <label className="field">
+                  <span className="labelText">First name</span>
+                  <input name="firstName" type="text" required />
+                </label>
 
-        <br />
+                <label className="field">
+                  <span className="labelText">Last name</span>
+                  <input name="lastName" type="text" required />
+                </label>
+              </div>
 
-        <label>
-          Email
-          <input
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            type="email"
-          />
-        </label>
+              <label className="field">
+                <span className="labelText">Email</span>
+                <input name="email" type="email" required />
+              </label>
 
-        <br />
+              <label className="field">
+                <span className="labelText">Describe the issue</span>
+                <textarea name="comments" rows={5} required />
+              </label>
 
-        <label>
-          Comments
-          <textarea
-            name="comments"
-            value={form.comments}
-            onChange={handleChange}
-            rows={4}
-          />
-        </label>
+              <button
+                type="submit"
+                className="primaryBtn"
+                disabled={status.state === "sending"}
+              >
+                {status.state === "sending" ? "Sending..." : "Submit"}
+              </button>
+            </form>
+          )}
 
-        <br />
-
-        <button type="submit">Submit</button>
-      </form>
-
-      <hr />
-
-      {/* proof it's controlled */}
-      <h2>Live Form State</h2>
-      <p>First: {form.firstName}</p>
-      <p>Last: {form.lastName}</p>
-      <p>Email: {form.email}</p>
-      <p>Comments: {form.comments}</p>
+          {status.state === "success" && (
+            <div className="afterSuccess">
+              If you don’t hear back soon, check your spam folder for the auto
+              reply.
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   );
 }
