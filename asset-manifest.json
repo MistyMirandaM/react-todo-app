@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/MistyMirandaM/react-todo-app.git/static/css/main.35ed9aba.css",
-    "main.js": "/MistyMirandaM/react-todo-app.git/static/js/main.349d6d55.js",
-    "static/js/453.f0b2a4c6.chunk.js": "/MistyMirandaM/react-todo-app.git/static/js/453.f0b2a4c6.chunk.js",
-    "index.html": "/MistyMirandaM/react-todo-app.git/index.html",
-    "main.35ed9aba.css.map": "/MistyMirandaM/react-todo-app.git/static/css/main.35ed9aba.css.map",
-    "main.349d6d55.js.map": "/MistyMirandaM/react-todo-app.git/static/js/main.349d6d55.js.map",
-    "453.f0b2a4c6.chunk.js.map": "/MistyMirandaM/react-todo-app.git/static/js/453.f0b2a4c6.chunk.js.map"
+    "main.css": "/react-todo-app/static/css/main.61a159fd.css",
+    "main.js": "/react-todo-app/static/js/main.dc3ae386.js",
+    "static/js/453.f0b2a4c6.chunk.js": "/react-todo-app/static/js/453.f0b2a4c6.chunk.js",
+    "index.html": "/react-todo-app/index.html",
+    "main.61a159fd.css.map": "/react-todo-app/static/css/main.61a159fd.css.map",
+    "main.dc3ae386.js.map": "/react-todo-app/static/js/main.dc3ae386.js.map",
+    "453.f0b2a4c6.chunk.js.map": "/react-todo-app/static/js/453.f0b2a4c6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.35ed9aba.css",
-    "static/js/main.349d6d55.js"
+    "static/css/main.61a159fd.css",
+    "static/js/main.dc3ae386.js"
   ]
 }
